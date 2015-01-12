@@ -1043,7 +1043,9 @@ Git remote heroku added
 
 Syötä pyydettäessä Heroku-tunnuksesi.
 
-Sovelluksen URL tulee olemaan tässä tapauksessa https://enigmatic-eyrie-1511.herokuapp.com/. Sovelluksen URLin alkuosan saa haluamaansa muotoon antamalla komennon muodossa **heroku create urlin_alkuosa**
+Sovelluksen URL tulee olemaan tässä tapauksessa https://enigmatic-eyrie-1511.herokuapp.com/. Sovelluksen URLin alkuosan saa haluamaansa muotoon antamalla komennon muodossa **heroku create urlin_alkuosa**. 
+
+**Huomaa**, että sovelluksen juuressa, eli osoitteessa https://enigmatic-eyrie-1511.herokuapp.com/ ei ole (tällä hetkellä) mitään. Sovelluksemme oluet löytyvät osoitteesta https://enigmatic-eyrie-1511.herokuapp.com/beers ja panimot osoitteesta https://enigmatic-eyrie-1511.herokuapp.com/breweries
 
 Railsissa sovellukset käyttävät oletusarvoisesti sqlite-tietokantaa, mutta Herokussa käytössä on PostgreSQL-tietokanta. Rails-sovelluksen käyttämät kirjastot eli Rubyn termein gemit on määritelty sovelluksen juuressa olevassa Gemfile-nimisessä tiedostossa. Jotta saamme PostgreSQLn käyttöön, joudumme tekemään muutoksen Gemfileen.
 
@@ -1127,8 +1129,6 @@ To https://git.heroku.com/enigmatic-eyrie-1511.git
 Sovelluksen käynnistys näytti onnistuneen ongelmitta.
 
 Avataan nyt selaimella panimoiden listan näyttävä sivu http://enigmatic-eyrie-1511.herokuapp.com/breweries
-
-Voit myös avata sivusi komennolla `heroku open`.
 
 Seurauksena on kuitenkin ikävä virheilmoitus "We're sorry, but something went wrong.".
 
