@@ -252,7 +252,7 @@ Jos konsoli antaa virheilmoituksen, johon sisältyy teksti "cannot load such fil
 
     apt-get install libreadline-dev
 
-    rbenv install 2.0.0-p353
+    rbenv install 2.2.0
 
 
 Tee kaikki seuraavat komennot myös itse:
