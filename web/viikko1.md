@@ -236,7 +236,7 @@ Kuten huomaamme, on railsin scaffoldingilla saatu jo melko paljon valmista toimi
 
     rails destroy scaffold brewery
 
-Jos olet suorittanut jo migraation ja huomaat että generaattorin luomis onkin tuohottava, on **erittäin tärkeää** ensin perua migraatio komennolla
+Jos olet suorittanut jo migraation ja huomaat että generaattorin luoma koodi onkin tuohottava, on **erittäin tärkeää** ensin perua migraatio komennolla
 
     rake db:rollback
 
