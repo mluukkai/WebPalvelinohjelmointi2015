@@ -252,7 +252,7 @@ Jos konsoli antaa virheilmoituksen, johon sisältyy teksti "cannot load such fil
 
     apt-get install libreadline-dev
 
-    rbenv install 2.0.0-p353
+    rbenv install 2.2.0
 
 
 Tee kaikki seuraavat komennot myös itse:
@@ -1023,13 +1023,14 @@ Luo ssh-avain ja lisää se herokuun sivulla https://dashboard.heroku.com/accoun
 Asenna herokun komentoriviliittymän sisältävä Heroku Toolbelt sivun https://toolbelt.heroku.com/ ohjeiden mukaan.
 
 **Huom:** Heroku Toolbeltin asentaminen vaatii admin-oikeuksia ja näinollen asennus laitoksen koneille ei onnistu. Saat kuitenkin asennettua Herokun komentorivikäyttöliittymän laitoksen koneille seuraavasti:
-* pura sivulta https://github.com/heroku/heroku löytyvä Tarball sopivaan paikkaan kotihakemistosi alle
-* lisää purettu hakemisto PATH:iin eli suorituspolulle, eli lisäämällä kotihakemistossasi olevaan <code>.bash_profile</code> tiedostoon rivi <code>export PATH=$PATH:~/heroku-client/bin</code> (olettaen että purit Tarballin kotihakemistoon)
-
-**Huom2:** saadakseksi Heroku clientin toimimaan laitoksen pajan koneissa, toimi seuraavasti:
-* poista pajan koneeen kotihakemistosta tiedosto <code>.netrc</code>
-* luo fs-kotihakemistoon samanniminen tyhjä tiedosto. fs-kotihakemistosi on polulla <code>/home/tktl-csfs/fs/home/omakayttajatunnus</code> tai <code>/home/tktl-csfs/fs2/home/omakayttajatunnus</code>
-* luo symbolinen linkki suorittamalla seuraava komento pajakoneen kotihakemistosta <code>ln -s /home/tktl-csfs/fs2/home/omakayttajatunnus/.netrc .</code> (fs tai fs2 riippuen kummasta hakemistosta kotihakemistosi löytyy)
+* Poista pajan koneeen kotihakemistosta tiedosto .netrc
+* luo fs-kotihakemistoon samanniminen tyhjä tiedosto. fs-kotihakemistosi on polulla `/home/tktl-csfs/fs/home/omakayttajatunnus` tai `/home/tktl-csfs/fs2/home/omakayttajatunnus`. Voit luoda tyhjän tiedoston esim. komennolla `touch .netrc`.
+* luo symbolinen linkki suorittamalla seuraava komento pajakoneen kotihakemistosta `ln -s /home/tktl-csfs/fs2/home/omakayttajatunnus/.netrc` . (fs tai fs2 riippuen kummasta hakemistosta kotihakemistosi löytyy)
+* Varmista että olet kotihakemistossasi komennolla `cd $HOME`
+* Lataa ja pura heroku client komennolla `wget -qO- https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz | tar xz`
+* Lisää heroku client PATH:iin komennolla `echo 'export PATH="$HOME/heroku-client/bin:$PATH"' >> ~/.bashrc`
+* Käynnistä terminaali uudelleen
+* Tarkista että heroku on asennettu oikein suorittamalla `heroku --version` jonka pitäisi tulostaa jotain `heroku-toolbelt/3.22.1 (x86_64-linux) ruby/2.2.0` tapaista.
 
 Mene sitten sovelluksen juurihakemistoon, ja luo sovellusta varten heroku-instanssi:
 
@@ -1040,7 +1041,11 @@ https://enigmatic-eyrie-1511.herokuapp.com/ | https://git.heroku.com/enigmatic-e
 Git remote heroku added
 ```
 
-Sovelluksen URL tulee olemaan tässä tapauksessa https://enigmatic-eyrie-1511.herokuapp.com/. Sovelluksen URLin alkuosan saa haluamaansa muotoon antamalla komennon muodossa **heroku create urlin_alkuosa**
+Syötä pyydettäessä Heroku-tunnuksesi.
+
+Sovelluksen URL tulee olemaan tässä tapauksessa https://enigmatic-eyrie-1511.herokuapp.com/. Sovelluksen URLin alkuosan saa haluamaansa muotoon antamalla komennon muodossa **heroku create urlin_alkuosa**. 
+
+**Huomaa**, että sovelluksen juuressa, eli osoitteessa https://enigmatic-eyrie-1511.herokuapp.com/ ei ole (tällä hetkellä) mitään. Sovelluksemme oluet löytyvät osoitteesta https://enigmatic-eyrie-1511.herokuapp.com/beers ja panimot osoitteesta https://enigmatic-eyrie-1511.herokuapp.com/breweries
 
 Railsissa sovellukset käyttävät oletusarvoisesti sqlite-tietokantaa, mutta Herokussa käytössä on PostgreSQL-tietokanta. Rails-sovelluksen käyttämät kirjastot eli Rubyn termein gemit on määritelty sovelluksen juuressa olevassa Gemfile-nimisessä tiedostossa. Jotta saamme PostgreSQLn käyttöön, joudumme tekemään muutoksen Gemfileen.
 
@@ -1061,6 +1066,12 @@ group :production do
    gem 'pg'
    gem 'rails_12factor'
 end
+```
+
+sekä
+
+```ruby
+ruby '2.2.0'
 ```
 
 Suoritetaan komentoriviltä komento <code>bundle install</code>, jotta muutokset tulevat käyttöön:
