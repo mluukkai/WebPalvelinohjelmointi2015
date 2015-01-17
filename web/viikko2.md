@@ -862,7 +862,7 @@ Nostetaan vielä esiin tämä tärkeä ero:
 **Jokaisen** Web-ohjelmoijan on syytä ymmärtää edellinen!
 
 ## Lisää Rails-sovelluksen debuggaamisesta
-m
+
 Rails on sisältänyt versiosta 4.2 oletusarvoisesti debuggerin tapaan toimivan _web-konsolin_. Konsolinäkymä avautuu automaattisesti jos ohjelmassa syntyy poikkeus.
 
 Poikkeuksen voi "aiheuttaa" esim. kirjoittamalla mihin tahansa kohtaan koodia <code>raise</code> kuten teimme jo hieman aiemmin. Palautetaan raise reittauskontrollerin metodiin create:
@@ -881,9 +881,9 @@ Kun nyt luot reittauksen, renderöityy tuttu virhesivu. Virhesivun alalaidassa o
 
 ![kuva](https://github.com/mluukkai/WebPalvelinohjelmointi2015/raw/master/images/ratebeer-w2-9.png)
 
-Aivan kuten debuggeria käytettäessä, web-konsolin näkymä avautuu siihen kontekstiin, jossa virhe tapahtuu, eli esim. muuttuja <code>params</code> on viitattavissa, samoin voidaan suorittaa kaikkia komentoja mitä konrollerimetodista käsin voitaisiin suorittaa, esim hakea reittauksia tietokannasta modelin <code>Rating</code> avulla.
+Aivan kuten debuggeria käytettäessä, web-konsolin näkymä avautuu siihen kontekstiin, jossa virhe tapahtuu, eli esim. muuttuja <code>params</code> on viitattavissa, samoin voidaan suorittaa kaikkia komentoja, joita konrollerimetodista käsin voitaisiin suorittaa, esim. hakea reittauksia tietokannasta modelin <code>Rating</code> avulla.
 
-Web-konsoli on varsin kätevä työkalu. Valitettavasti konsoli ei kuitenkaan toimi optimaalisesti näkymätemplateihin liittyvissä virhetilanteissa.
+Web-konsoli on varsin kätevä työkalu. Valitettavasti web-konsoli ei kuitenkaan toimi optimaalisesti näkymätemplateihin liittyvissä virhetilanteissa.
 
 Luodaan sovellukseen olut, johon ei liity panimoa:
 
@@ -897,7 +897,7 @@ Kaikkien oluiden sivulle meneminen aiheuttaa nyt virheen:
 
 ![kuva](https://github.com/mluukkai/WebPalvelinohjelmointi2015/raw/master/images/ratebeer-w2-10.png)
 
-Näemme virheilmoituksesta rivin joka aiheuttaa ongelman ja ongelman syyn:
+Näemme virheilmoituksesta rivin, joka aiheuttaa ongelman ja ongelman syyn:
 
     undefined method `name' for nil:NilClass
 
@@ -907,9 +907,9 @@ eli näkymätemlate yrittä kutsua metodia <code>name</code> olemattomalle oliol
 
 eli näkymätemplaten paikallisen muuttujan <code>beer</code> kentässä <code>brewery</code> olevalle oliolle yritetään kutsua metodia, mutta olioa ei ole olemassa.
 
-Toisin kuin kontrollereissa tai modelissa tapahtuvissa virheissä emme valitettavasti pääse web-konsolissa käsiksi näkymien muuttujiin.
+Toisin kuin kontrollereissa tai modelissa tapahtuvissa virheissä, emme valitettavasti pääse web-konsolissa käsiksi näkymien muuttujiin.
 
-Debuggerin avulla tämä kuitenkin onnistuu. Tiedämme, että ongelmallinen tilanne syntyy jos vastaan tulee olut johon liittyvä panimo on nil. Lisätään näkymätemplateen debuggerin käynnistyskomento tälläistä tilannetta varten:
+Debuggerin avulla tämä kuitenkin onnistuu. Tiedämme, että ongelmallinen tilanne syntyy jos vastaan tulee olut johon liittyvä panimo on nil. Lisätään näkymätemplateen debuggerin käynnistyskomento <code>byebug</code> tälläistä tilannetta varten:
 
 ```erb
   <tbody>
@@ -962,9 +962,9 @@ Eli poistimme oluen ja jatkoimme ohjelman suorittamista komennolla <code>c</code
 
 Ongelman korjauduttua poistetaan debuggerin käynnistyskomento näkymätemplatesta.
 
-Debuggerin käytöstä on niin paljon iloa, että siihen (sekä luonnollisesti myös konsolin käyttöön) kannattaa totutella välittömästi. Debuggerin etu tietyissä tilanteissa pelkkään Rails-konsoliin verrattuna on se, että debuggerisession saa avattua haluttuun kontekstiin, esim. kontrolleriin tai renderöitävissä olevaan näkymään ja näin pääsee tarkastelemaan esim. mitä muuttujien arvoja ohjelmalla on suorituksen aikana.
+Debuggerin käytöstä on niin paljon iloa, että siihen (sekä luonnollisesti myös Rails-konsolin käyttöön) kannattaa totutella välittömästi. Debuggerin etu tietyissä tilanteissa pelkkään Rails-konsoliin verrattuna on se, että debuggerisession saa avattua haluttuun kontekstiin, esim. kontrolleriin tai renderöitävissä olevaan näkymään ja näin pääsee tarkastelemaan esim. mitä muuttujien arvoja ohjelmalla on suorituksen aikana.
 
-Railsiin on tarjolla myös hieman oletusarvoista web-konsolia paremmin näyttöjen renderöinnissä olevissa virhetilanteissa toimivan konsolin tarjoava *better_errors* gem. Lisätään tiedostoon Gemfile seuraava
+Railsiin on tarjolla myös oletusarvoista web-konsolia paremmin näyttöjen renderöinnissä olevissa virhetilanteissa toimivan web-konsolin tarjoava [better_errors](https://github.com/charliesome/better_errors) gem. Lisätään tiedostoon Gemfile seuraava
 
 ```ruby
 group :development, :test do
@@ -974,7 +974,7 @@ group :development, :test do
 end
 ```
 
-Suoritetaan komentoriviltä <code>bundle install</code> ja käynnistetään sovellus uudelleen. Luodaan jälleen olut johon ei liity panimoa ja mennään kaikkien oluiden sivulle.
+Suoritetaan komentoriviltä <code>bundle install</code> ja käynnistetään sovellus uudelleen. Luodaan jälleen olut, johon ei liity panimoa ja mennään kaikkien oluiden sivulle.
 
 Better_errors on muokannut virhetilanteesta kertovan sivun täysin erilaiseksi:
 
@@ -1443,6 +1443,8 @@ Tietokantataulua *ratings* siis ei ole olemassa. Ongelma korjaantuu suorittamall
 
     heroku run rake db:migrate
 
+Generoidaan seuraavaksi tilanne, jossa tietokanta joutuu hieman epäkonsistenttiin tilaan.
+
 Käynnistä heroku-konsoli komennolla <code>heroku run console</code> ja luo sovellukseen olut johon ei liity mitään panimoa
 
 ```ruby
@@ -1458,7 +1460,7 @@ irb(main):003:0> Beer.create name:"shitty beer", style:"lager", brewery_id: 123
 irb(main):004:0>
 ```
 
-Kun menet nyt kaikkien oluiden on seurauksena jälleen ikävä ilmoitus "We're sorry, but something went wrong.". Jälleen kerran ongelmaa on etsittävä lokeista.
+Kun menet nyt kaikkien oluiden on seurauksena jälleen ikävä ilmoitus "We're sorry, but something went wrong.". Jälleen kerran ongelmaa on etsittävä lokeista:
 
 ```ruby
 2015-01-17T18:01:30.233677+00:00 app[web.1]: Started GET "/beers" for 87.92.42.254 at 2015-01-17 18:01:30 +0000
@@ -1484,9 +1486,9 @@ virheen aiheuttanut rivi on
 
     <td><%= link_to beer.brewery.name, beer.brewery %></td>
 
-eli on olemassa olut jonka kentässä <code>brewery</code> on arvona <code>nil</code>. Tämä voi johtua joko siitä että oluen <code>brewery_id</code> on <code>nil</code> tai <code>brewery_id</code>:n arvona on virheellinen (esim poistetun panimon) id.
+eli on olemassa olut, jonka kentässä <code>brewery</code> on arvona <code>nil</code>. Tämä voi johtua joko siitä että oluen <code>brewery_id</code> on <code>nil</code> tai <code>brewery_id</code>:n arvona on virheellinen (esim. poistetun panimon) id.
 
-Kun virheen syy paljastuu, on etsittävä syylliset. Eli avataan heroku-konsoli ja haetaan panimottomat oluet:
+Kun virheen syy paljastuu, on etsittävä syylliset. Eli avataan heroku-konsoli komennolla <code>heroku run console</code> ja haetaan panimottomat oluet:
 
 ```ruby
 irb(main):006:0> Beer.all.select{ |b| b.brewery.nil? }
@@ -1494,7 +1496,7 @@ irb(main):006:0> Beer.all.select{ |b| b.brewery.nil? }
 irb(main):007:0>
 ```
 
-Seuraavana toimenpiteenä on virheen aiheuttavien olioiden korjaaminen. Koska loimme ne nyt itse testaamista varten, poistamme oliot (otamme ensin <code>_</code>-muuttujassa olevat edellisne operaation palauttamat oliot talteen muuttujaan):
+Seuraavana toimenpiteenä on virheen aiheuttavien olioiden korjaaminen. Koska loimme ne nyt itse testaamista varten, poistamme oliot (otamme ensin <code>_</code>-muuttujassa olevat edellisen operaation palauttamat oliot talteen muuttujaan):
 
 ```ruby
 irb(main):007:0> bad_beer = _
@@ -1505,7 +1507,9 @@ irb(main):009:0> Beer.all.select{ |b| b.brewery.nil? }
 irb(main):010:0>
 ```
 
-Useimmiten tuotannossa vastaan tulevat ongelmat johtuvat siitä että tietokantaskeeman muutosten takia jotkut oliot ovat joutuneet epäkonsistenttiin tilaan, eli ne esim. viittaavat olioihin joita ei ole tai viitteet puuttuvat. Sovellus kannattaakin deployata tuotantoon *mahdollisimman usein*, näin tiedetään että mahdolliset ongelmat ovat juuri tehtyjen muutosten aiheuttamia ja korjaus on helpompaa. Koska kyseessä on tuotannossa oleva ohjelma, tietokannan resetointi (<code>rake db:drop</code>) ei ole missään tapauksessa hyväksyttävä keino "korjata" epäkonsistenttia tietokantaa sillä tuotannossa olevaa dataa ei saa hävittää. Opettele siis heti alusta asti lukemaan lokeja ja selvittämään ongelmat kunnolla.
+Useimmiten tuotannossa vastaan tulevat ongelmat johtuvat siitä, että tietokantaskeeman muutosten takia jotkut oliot ovat joutuneet epäkonsistenttiin tilaan, eli ne esim. viittaavat olioihin joita ei ole tai viitteet puuttuvat. **Sovellus kannattaakin deployata tuotantoon mahdollisimman usein**, näin tiedetään että mahdolliset ongelmat ovat juuri tehtyjen muutosten aiheuttamia ja korjaus on helpompaa.
+
+Koska kyseessä on tuotannossa oleva ohjelma, tietokannan resetointi (<code>rake db:drop</code>) ei ole missään tapauksessa hyväksyttävä keino "korjata" epäkonsistenttia tietokantaa sillä tuotannossa olevaa dataa ei saa hävittää. Opettele siis heti alusta asti lukemaan lokeja ja selvittämään ongelmat kunnolla.
 
 ## Tehtävien palautus
 
