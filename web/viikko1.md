@@ -254,6 +254,12 @@ Jos konsoli antaa virheilmoituksen, johon sisältyy teksti "cannot load such fil
 
     rbenv install 2.2.0
 
+Jos edellinenkään ei auta, lisää seuraava rivi tiedostoon Gemfile
+
+    readline-rb
+    
+ja suorita komentoriviltä komento <code>bundle install</code>
+
 
 Tee kaikki seuraavat komennot myös itse:
 
