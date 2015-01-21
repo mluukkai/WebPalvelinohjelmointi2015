@@ -256,7 +256,7 @@ Jos konsoli antaa virheilmoituksen, johon sisältyy teksti "cannot load such fil
 
 Jos edellinenkään ei auta, lisää seuraava rivi tiedostoon Gemfile
 
-    readline-rb
+    gem 'rb-readline'
     
 ja suorita komentoriviltä komento <code>bundle install</code>
 
