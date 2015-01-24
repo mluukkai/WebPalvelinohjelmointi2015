@@ -1304,12 +1304,66 @@ Muutosten jälkeen käyttäjän tietojen muuttamislomake näyttää seuraavalta:
 
 ## Ongelmia herokussa
 
-https://github.com/mluukkai/WebPalvelinohjelmointi2015/blob/master/web/viikko2.md#ongelmia-herokussa
+Kun ohjelman päivitetty versio deployataan herokuun, törmätään jälleen ongelmiin. Kaikkien reittausten ja kaikkien käyttäjien sivu ja signup-linkki saavat aikaan tutun virheen:
+
+![kuva](https://github.com/mluukkai/WebPalvelinohjelmointi2015/raw/master/images/ratebeer-w2-12.png)
+
+Kuten [viime viikolla](
+https://github.com/mluukkai/WebPalvelinohjelmointi2015/blob/master/web/viikko2.md#ongelmia-herokussa) jo totesimme, tulee ongelman syy selvittää herokun lokeista.
+
+Kaikkien käyttäjien sivu aiheuttaa seuraavan virheen:
+
+    ActionView::Template::Error (PG::UndefinedTable: ERROR:  relation "users" does not exist
+
+eli tietokantataulua *users* ei ole olemassa koska sovelluksen uusia migraatioita ei ole suoritettu herokussa. Ongelma korjaantuu suorittamalla migratiot:
+
+    heroku run rake db:migrate
+
+Myös signup-sivu toimii migraatioiden suorittamisen jälkeen.
+
+Reittausten sivun ongelma ei korjaantunut migraatioiden avulla ja syytä on etsittävä lokeista:
+
+```ruby
+2015-01-24T19:19:58.672580+00:00 app[web.1]: ActionView::Template::Error (undefined method `username' for nil:NilClass):
+2015-01-24T19:19:58.672582+00:00 app[web.1]:     2:
+2015-01-24T19:19:58.672583+00:00 app[web.1]:     3: <ul>
+2015-01-24T19:19:58.672584+00:00 app[web.1]:     4:   <% @ratings.each do |rating| %>
+2015-01-24T19:19:58.672586+00:00 app[web.1]:     5:     <li> <%= rating %> <%= link_to rating.user.username, rating.user %> </li>
+2015-01-24T19:19:58.672588+00:00 app[web.1]:     6:   <% end %>
+2015-01-24T19:19:58.672589+00:00 app[web.1]:     7: </ul>
+2015-01-24T19:19:58.672590+00:00 app[web.1]:     8:
+```
+
+Syy on jälleen tuttu, eli näkymäkoodi yrittää kutsua metodia <code>usenrame</code> nil-arvoiselle oliolle. Syyn täytyy olla <code>link_to</code> metodissa oleva parametri
+
+```ruby
+    rating.user.username
+```
+
+eli järjestelmässä on reittauksia joihin ei liity user-olioa.
+
+Vaikka tietokantamigraatio on suoritettu, on osa järjestelmän datasta edelleen vanhan tietokantaskeeman mukaista. Tietokantamigraation yheyteen olisikin ollut järkevää kirjoittaa koodi, joka varmistaa että myös järjestelmän data saatetaan migraation jälkeen sellaiseen muotoon, mitä koodi olettaa, eli että esim. jokaiseen olemassaolevaan reittaukseen liitetään joku käyttäjä tai käyttäjättömät reittaukset poistetaan.
+
+Luodaan järjestelmään käyttäjä ja laitetaan herokun konsolista kaikkien olemassaolevien reittausten käyttäjäksi järjestelmään ensimmäisenä luotu käyttäjä:
+
+```ruby
+irb(main):002:0> u = User.first
+=> #<User id: 1, username: "mluukkai", created_at: "2015-01-24 19:56:38", updated_at: "2015-01-24 19:56:38", password_digest: "$2a$10$g3AEFZtiOa186yfBql3tOO9ELAIgBUwOFnnWIVwwfYS...">
+irb(main):003:0> Rating.all.each{ |r| u.ratings << r }
+=> [#<Rating id: 1, score: 21, beer_id: 1, created_at: "2015-01-17 17:55:43", updated_at: "2015-01-24 19:56:51", user_id: 1>, #<Rating id: 2, score: 15, beer_id: 2, created_at: "2015-01-18 20:12:59", updated_at: "2015-01-24 19:56:51", user_id: 1>]
+irb(main):004:0>
+```
+
+Nyt sovellus toimii.
+
+Toistetaan vielä viikon lopuksi edellisen viikon "ongelmia herokussa"-luvun lopetus
+
+<quote>
+Useimmiten tuotannossa vastaan tulevat ongelmat johtuvat siitä, että tietokantaskeeman muutosten takia jotkut oliot ovat joutuneet epäkonsistenttiin tilaan, eli ne esim. viittaavat olioihin joita ei ole tai viitteet puuttuvat. **Sovellus kannattaakin deployata tuotantoon mahdollisimman usein**, näin tiedetään että mahdolliset ongelmat ovat juuri tehtyjen muutosten aiheuttamia ja korjaus on helpompaa.
+</quote>
 
 ## Tehtävien palautus
 
 Commitoi kaikki tekemäsi muutokset ja pushaa koodi Githubiin. Deployaa myös uusin versio Herokuun.
 
 Tehtävät kirjataan palautetuksi osoitteeseen http://wadrorstats2015.herokuapp.com
-
-
