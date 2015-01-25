@@ -380,7 +380,7 @@ Sessio-resurssi kuitenkin poikkeaa esim. oluista siinä mielessä että tietyll�
 
 Kirjautumissivun osoite on nyt **session/new**. Osoitteeseen **session** tehty POST-kutsu suorittaa kirjautumisen, eli luo käyttäjälle session. Uloskirjautuminen tapahtuu tuhoamalla käyttäjän sessio eli tekemällä POST-delete kutsu osoitteeseen **session**.
 
-Tehdään sessioista huolehtiva kontrolleri (tiedostoon app/controllers/sessions/sessins_controller.rb):
+Tehdään sessioista huolehtiva kontrolleri (tiedostoon app/controllers/sessions_controller.rb):
 
 ```ruby
 class SessionsController < ApplicationController
