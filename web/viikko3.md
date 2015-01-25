@@ -1097,7 +1097,7 @@ Lisätään nyt kirjautumiseen salasanan tarkistus. Muutetaan ensin kirjautumiss
 
 <p id="notice"><%= notice %></p>
 
-<%= form_tag sessions_path do %>
+<%= form_tag session_path do %>
   username <%= text_field_tag :username, params[:username] %>
   password <%= password_field_tag :password, params[:password] %>
   <%= submit_tag "Log in" %>
@@ -1367,3 +1367,5 @@ Useimmiten tuotannossa vastaan tulevat ongelmat johtuvat siitä, että tietokant
 Commitoi kaikki tekemäsi muutokset ja pushaa koodi Githubiin. Deployaa myös uusin versio Herokuun.
 
 Tehtävät kirjataan palautetuksi osoitteeseen http://wadrorstats2015.herokuapp.com
+
+tehtävien palautus onnistuu ma 26.1. alkaen
