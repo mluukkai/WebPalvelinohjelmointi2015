@@ -449,7 +449,7 @@ Lisätään application layoutiin seuraava koodi, joka lisää kirjautuneen käy
 <% end %>
 ```
 
-menemällä osoitteeseen [http://localhost:3000/session/new][/session/new] voimme nyt kirjautua sovellukseen (jos sovellukseen on luotu käyttäjiä). Uloskirjautuminen ei vielä toistaiseksi onnistu.
+menemällä osoitteeseen [http://localhost:3000/session/new](/session/new) voimme nyt kirjautua sovellukseen (jos sovellukseen on luotu käyttäjiä). Uloskirjautuminen ei vielä toistaiseksi onnistu.
 
 > ## Tehtävä 1
 >
@@ -497,6 +497,8 @@ Olisi periaatteessa ollut mahdollista määritellä myös
 ```
 
 eli mahdollistaa uloskirjautuminen HTTP GET:in avulla. Ei kuitenkaan pidetä hyvänä käytänteenä, että HTTP GET -pyyntö tekee muutoksia sovelluksen tilaan ja pysyttäydytään edelleen REST-filosofian mukaisessa käytänteessä, jonka mukaan resurssin tuhoaminen tapahtuu HTTP DELETE -pyynnöllä. Tässä tapauksessa vaan resurssi on hieman laveammin tulkittava asia eli käyttäjän sisäänkirjautuminen.
+
+Huom: jos saat sisäänkirjautumisyrityksessä virheilmoitusen <code>BCrypt::Errors::InvalidHash</code> johtuu virhe melko varmasti siitä että käyttäjälle ei ole asetettu salasanaa. Eli aseta salasana konsolista ja yritä uudelleen.
 
 > ## Tehtävä 2
 >
