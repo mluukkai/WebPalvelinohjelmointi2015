@@ -453,7 +453,11 @@ Lisätään application layoutiin seuraava koodi, joka lisää kirjautuneen käy
 
 menemällä osoitteeseen [http://localhost:3000/session/new](/session/new) voimme nyt kirjautua sovellukseen (jos sovellukseen on luotu käyttäjiä). Uloskirjautuminen ei vielä toistaiseksi onnistu.
 
-**HUOM:** jos saat virheilmoituksen <codeuninitialized constant SessionController></code> **varmista että kirjoitit määrittelyn routes.rb:n oikein, eli <code>resource :session, only: [:new, :create, :delete]</code>**
+**HUOM:** jos saat virheilmoituksen <code>uninitialized constant SessionController></code> **varmista että kirjoitit määrittelyn routes.rb:n oikein, eli**
+
+```ruby
+  resource :session, only: [:new, :create, :delete]
+```
 
 > ## Tehtävä 1
 >
