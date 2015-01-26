@@ -378,6 +378,8 @@ Sessio-resurssi kuitenkin poikkeaa esim. oluista siinä mielessä että tietyll�
 
     resource :session, only: [:new, :create, :delete]
 
+**HUOM:** varmista että kirjoitat määrittelyn routes.rb:hen juuri ylläkuvatulla tavalla, eli **<code>resource</code>**, ei _resources_ niinkuin muiden polkujen määrittelyt on tehty.
+
 Kirjautumissivun osoite on nyt **session/new**. Osoitteeseen **session** tehty POST-kutsu suorittaa kirjautumisen, eli luo käyttäjälle session. Uloskirjautuminen tapahtuu tuhoamalla käyttäjän sessio eli tekemällä POST-delete kutsu osoitteeseen **session**.
 
 Tehdään sessioista huolehtiva kontrolleri (tiedostoon app/controllers/sessions_controller.rb):
