@@ -904,7 +904,7 @@ http://guides.rubyonrails.org/active_record_validations.html ja http://apidock.c
 >
 >   validates :year, numericality: { less_than_or_equal_to: Time.now.year }
 >
-> Nyt käy siten, että <code>Time.now.year</code> evaluoidaan siinä vaiheessa kun ohjelma lataa luokan koodin. Jos esim. ohjelma käynnistetään vuoden 2015 lopussa, ei vuoden 2015 alussa voida rekisteröidä 2015 aloittanutta panimoa, sillä vuoden yläraja validoinnissa on ohjelman käynnistyshetkellä evaluoitunut 2015
+> Nyt käy siten, että <code>Time.now.year</code> evaluoidaan siinä vaiheessa kun ohjelma lataa luokan koodin. Jos esim. ohjelma käynnistetään vuoden 2015 lopussa, ei vuoden 2016 alussa voida rekisteröidä 2016 aloittanutta panimoa, sillä vuoden yläraja validoinnissa on ohjelman käynnistyshetkellä evaluoitunut 2015
 >
 > Eräs kelvollinen ratkaisutapa on oman validointimetodin määritteleminen http://guides.rubyonrails.org/active_record_validations.html#custom-methods
 >
