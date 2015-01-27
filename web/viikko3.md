@@ -941,7 +941,7 @@ end
 Ja monen suhde moneen -yhteys toimii käyttäjästä päin:
 
 ```ruby
-2.0.0-p451 :009 > u = User.first
+2.0.0-p451 :009 > User.first.beers
  => #<ActiveRecord::Associations::CollectionProxy [#<Beer id: 1, name: "Iso 3", style: "Lager", brewery_id: 1, created_at: "2015-01-11 14:29:25", updated_at: "2015-01-11 14:29:25">, #<Beer id: 1, name: "Iso 3", style: "Lager", brewery_id: 1, created_at: "2015-01-11 14:29:25", updated_at: "2015-01-11 14:29:25">, #<Beer id: 11, name: "Punk IPA", style: "IPA", brewery_id: 4, created_at: "2015-01-17 13:12:12", updated_at: "2015-01-17 13:12:12">, #<Beer id: 11, name: "Punk IPA", style: "IPA", brewery_id: 4, created_at: "2015-01-17 13:12:12", updated_at: "2015-01-17 13:12:12">, #<Beer id: 11, name: "Punk IPA", style: "IPA", brewery_id: 4, created_at: "2015-01-17 13:12:12", updated_at: "2015-01-17 13:12:12">, #<Beer id: 12, name: "Nanny State", style: "lowalcohol", brewery_id: 4, created_at: "2015-01-17 13:12:27", updated_at: "2015-01-17 13:12:52">, #<Beer id: 12, name: "Nanny State", style: "lowalcohol", brewery_id: 4, created_at: "2015-01-17 13:12:27", updated_at: "2015-01-17 13:12:52">, #<Beer id: 7, name: "Helles", style: "Lager", brewery_id: 3, created_at: "2015-01-11 14:29:25", updated_at: "2015-01-11 14:29:25">, #<Beer id: 1, name: "Iso 3", style: "Lager", brewery_id: 1, created_at: "2015-01-11 14:29:25", updated_at: "2015-01-11 14:29:25">, #<Beer id: 4, name: "Huvila Pale Ale", style: "Pale Ale", brewery_id: 2, created_at: "2015-01-11 14:29:25", updated_at: "2015-01-11 14:29:25">, ...]>
 2.0.0-p451 :011 >
 ```
@@ -949,7 +949,7 @@ Ja monen suhde moneen -yhteys toimii käyttäjästä päin:
 ja oluesta päin:
 
 ```ruby
-2.0.0-p451 :011 > b = Beer.first
+2.0.0-p451 :011 > Beer.first.users
  => #<ActiveRecord::Associations::CollectionProxy [#<User id: 1, username: "mluukkai", created_at: "2015-01-24 14:20:10", updated_at: "2015-01-24 14:20:10">, #<User id: 1, username: "mluukkai", created_at: "2015-01-24 14:20:10", updated_at: "2015-01-24 14:20:10">, #<User id: 1, username: "mluukkai", created_at: "2015-01-24 14:20:10", updated_at: "2015-01-24 14:20:10">, #<User id: 2, username: "pekka", created_at: "2015-01-24 16:51:42", updated_at: "2015-01-24 16:51:42">]>
 2.0.0-p451 :013 >
 irb(main):010:0>
