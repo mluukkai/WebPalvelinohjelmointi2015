@@ -378,6 +378,8 @@ Sessio-resurssi kuitenkin poikkeaa esim. oluista siinä mielessä että tietyll�
 
     resource :session, only: [:new, :create, :delete]
 
+**HUOM: varmista että kirjoitat määrittelyn routes.rb:hen juuri ylläkuvatulla tavalla, eli <code>resource</code>, ei _resources_ niinkuin muiden polkujen määrittelyt on tehty.**
+
 Kirjautumissivun osoite on nyt **session/new**. Osoitteeseen **session** tehty POST-kutsu suorittaa kirjautumisen, eli luo käyttäjälle session. Uloskirjautuminen tapahtuu tuhoamalla käyttäjän sessio eli tekemällä POST-delete kutsu osoitteeseen **session**.
 
 Tehdään sessioista huolehtiva kontrolleri (tiedostoon app/controllers/sessions_controller.rb):
@@ -450,6 +452,12 @@ Lisätään application layoutiin seuraava koodi, joka lisää kirjautuneen käy
 ```
 
 menemällä osoitteeseen [http://localhost:3000/session/new](/session/new) voimme nyt kirjautua sovellukseen (jos sovellukseen on luotu käyttäjiä). Uloskirjautuminen ei vielä toistaiseksi onnistu.
+
+**HUOM:** jos saat virheilmoituksen <code>uninitialized constant SessionController></code> **varmista että määrittelit reitit routes.rb:hen oikein, eli**
+
+```ruby
+  resource :session, only: [:new, :create, :delete]
+```
 
 > ## Tehtävä 1
 >
@@ -896,7 +904,7 @@ http://guides.rubyonrails.org/active_record_validations.html ja http://apidock.c
 >
 >   validates :year, numericality: { less_than_or_equal_to: Time.now.year }
 >
-> Nyt käy siten, että <code>Time.now.year</code> evaluoidaan siinä vaiheessa kun ohjelma lataa luokan koodin. Jos esim. ohjelma käynnistetään vuoden 2015 lopussa, ei vuoden 2015 alussa voida rekisteröidä 2015 aloittanutta panimoa, sillä vuoden yläraja validoinnissa on ohjelman käynnistyshetkellä evaluoitunut 2015
+> Nyt käy siten, että <code>Time.now.year</code> evaluoidaan siinä vaiheessa kun ohjelma lataa luokan koodin. Jos esim. ohjelma käynnistetään vuoden 2015 lopussa, ei vuoden 2016 alussa voida rekisteröidä 2016 aloittanutta panimoa, sillä vuoden yläraja validoinnissa on ohjelman käynnistyshetkellä evaluoitunut 2015
 >
 > Eräs kelvollinen ratkaisutapa on oman validointimetodin määritteleminen http://guides.rubyonrails.org/active_record_validations.html#custom-methods
 >
@@ -933,7 +941,7 @@ end
 Ja monen suhde moneen -yhteys toimii käyttäjästä päin:
 
 ```ruby
-2.0.0-p451 :009 > u = User.first
+2.0.0-p451 :009 > User.first.beers
  => #<ActiveRecord::Associations::CollectionProxy [#<Beer id: 1, name: "Iso 3", style: "Lager", brewery_id: 1, created_at: "2015-01-11 14:29:25", updated_at: "2015-01-11 14:29:25">, #<Beer id: 1, name: "Iso 3", style: "Lager", brewery_id: 1, created_at: "2015-01-11 14:29:25", updated_at: "2015-01-11 14:29:25">, #<Beer id: 11, name: "Punk IPA", style: "IPA", brewery_id: 4, created_at: "2015-01-17 13:12:12", updated_at: "2015-01-17 13:12:12">, #<Beer id: 11, name: "Punk IPA", style: "IPA", brewery_id: 4, created_at: "2015-01-17 13:12:12", updated_at: "2015-01-17 13:12:12">, #<Beer id: 11, name: "Punk IPA", style: "IPA", brewery_id: 4, created_at: "2015-01-17 13:12:12", updated_at: "2015-01-17 13:12:12">, #<Beer id: 12, name: "Nanny State", style: "lowalcohol", brewery_id: 4, created_at: "2015-01-17 13:12:27", updated_at: "2015-01-17 13:12:52">, #<Beer id: 12, name: "Nanny State", style: "lowalcohol", brewery_id: 4, created_at: "2015-01-17 13:12:27", updated_at: "2015-01-17 13:12:52">, #<Beer id: 7, name: "Helles", style: "Lager", brewery_id: 3, created_at: "2015-01-11 14:29:25", updated_at: "2015-01-11 14:29:25">, #<Beer id: 1, name: "Iso 3", style: "Lager", brewery_id: 1, created_at: "2015-01-11 14:29:25", updated_at: "2015-01-11 14:29:25">, #<Beer id: 4, name: "Huvila Pale Ale", style: "Pale Ale", brewery_id: 2, created_at: "2015-01-11 14:29:25", updated_at: "2015-01-11 14:29:25">, ...]>
 2.0.0-p451 :011 >
 ```
@@ -941,7 +949,7 @@ Ja monen suhde moneen -yhteys toimii käyttäjästä päin:
 ja oluesta päin:
 
 ```ruby
-2.0.0-p451 :011 > b = Beer.first
+2.0.0-p451 :011 > Beer.first.users
  => #<ActiveRecord::Associations::CollectionProxy [#<User id: 1, username: "mluukkai", created_at: "2015-01-24 14:20:10", updated_at: "2015-01-24 14:20:10">, #<User id: 1, username: "mluukkai", created_at: "2015-01-24 14:20:10", updated_at: "2015-01-24 14:20:10">, #<User id: 1, username: "mluukkai", created_at: "2015-01-24 14:20:10", updated_at: "2015-01-24 14:20:10">, #<User id: 2, username: "pekka", created_at: "2015-01-24 16:51:42", updated_at: "2015-01-24 16:51:42">]>
 2.0.0-p451 :013 >
 irb(main):010:0>
@@ -1369,5 +1377,3 @@ Useimmiten tuotannossa vastaan tulevat ongelmat johtuvat siitä, että tietokant
 Commitoi kaikki tekemäsi muutokset ja pushaa koodi Githubiin. Deployaa myös uusin versio Herokuun.
 
 Tehtävät kirjataan palautetuksi osoitteeseen http://wadrorstats2015.herokuapp.com
-
-tehtävien palautus onnistuu ma 26.1. alkaen
