@@ -1063,6 +1063,11 @@ Rails käyttää tiivisteen tallettamiseen <code>bcrypt-ruby</code> gemiä. Otet
 
 Tämän jälkeen annetaan komentoriviltä komento <code>bundle install</code> jotta gem asentuu.
 
+**Huom:** jos käytät hieman vanhempaa railsin versiota, joudut käyttämään eri gemiä:
+
+    gem 'bcrypt-ruby', '~> 3.1.2'
+
+
 Kokeillaan nyt hieman uutta toiminnallisuutta konsolista (joudut uudelleenkäynnistämään konsolin, jotta se saa käyttöönsä uuden gemin).
 
 __Muista myös suorittaa migraatio!__
