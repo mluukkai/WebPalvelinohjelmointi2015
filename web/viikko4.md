@@ -1465,6 +1465,7 @@ Otetaan modulin määrittelemä metodi käyttöön testeissä:
 
 ```ruby
 require 'rails_helper'
+
 include OwnTestHelper
 
 describe "Rating" do
@@ -1521,6 +1522,8 @@ end
 
 Kirjautumisen toteutuksen siirtäminen apumetodiin siis kasvattaa myös testien luettavuutta, ja jos kirjautumissivun toiminnallisuus myöhemmin muuttuu, on testien ylläpito helppoa, koska muutoksia ei tarvita kuin yhteen kohtaan.
 
+*Huom:* jos saat virheilmoituksen <code>uninitialized constant OwnTestHelper (NameError)</code> siirrä määrittely
+<code>include OwnTestHelper</code> tiedostoon <code>rails_helper.rb</code>.
 
 > ## Tehtävä 5
 >
@@ -1900,8 +1903,10 @@ Kokeile selaimella, että muutokset toimivat, eli että kirjautumaton käyttäj�
 > Estä esifiltterien avulla kirjautumattomilta käyttäjiltä panimoiden ja olutseurojen suhteen muut toiminnot paitsi kaikkien listaus ja yksittäisen resurssin tietojen tarkastelu (eli metodit <code>show</code> ja <code>index</code>)
 >
 > Kun olet varmistanut että toiminnallisuus on kunnossa, voit halutessasi poistaa näkymistä ylimääräiset luomis-, poisto- ja editointilinkit kirjautumattomilta käyttäjiltä
+
+> ## Tehtävä 15
 >
-> Jos joku sovellukseen aiemmin tehdyistä testeistä menee laajennuksen takia rikki, korjaa testit
+> Tehtävää 14 ennen tekemiemme laajennustan takia muutama ohjelman testeistä menee rikki. Korjaa testit
 
 ## Sovelluksen ulkoasun hienosäätö
 
