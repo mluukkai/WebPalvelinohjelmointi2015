@@ -1522,8 +1522,10 @@ end
 
 Kirjautumisen toteutuksen siirtäminen apumetodiin siis kasvattaa myös testien luettavuutta, ja jos kirjautumissivun toiminnallisuus myöhemmin muuttuu, on testien ylläpito helppoa, koska muutoksia ei tarvita kuin yhteen kohtaan.
 
-*Huom:* jos saat virheilmoituksen <code>uninitialized constant OwnTestHelper (NameError)</code> siirrä määrittely
-<code>include OwnTestHelper</code> tiedostoon <code>rails_helper.rb</code>.
+**Huom:** jos saat virheilmoituksen <code>uninitialized constant OwnTestHelper (NameError)</code> siirrä määrittely
+<code>include OwnTestHelper</code> tiedoston <code>rails_helper.rb</code> loppuun.
+
+**Huom2:** jos virheilmoitus ei vieläkään poistu, voit kopioida määritellyt apumetodit suoraan tiedoston <code>rails_helper.rb</code> loppuun.
 
 > ## Tehtävä 5
 >
@@ -1924,6 +1926,6 @@ nämä muutokset eivät ole välttämättömiä ja tulevat viikotkaan eivät muu
 
 Commitoi kaikki tekemäsi muutokset ja pushaa koodi Githubiin. Deployaa myös uusin versio Herokuun.
 
-Tehtävät kirjataan palautetuksi osoitteeseen http://wadrorstats2015.herokuapp.com/ 
+Tehtävät kirjataan palautetuksi osoitteeseen http://wadrorstats2015.herokuapp.com/
 
 
