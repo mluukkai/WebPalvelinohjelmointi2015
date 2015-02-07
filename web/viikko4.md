@@ -1175,7 +1175,7 @@ Toivottavasti olet jo tässä vaiheessa kurssia rutinoitunut byebugin käyttäj�
 >
 > Tee seuraavaksi TDD-tyylillä <code>User</code>-olioille metodi <code>favorite_style</code>, joka palauttaa tyylin, jonka oluet ovat saaneet käyttäjältä keskimäärin korkeimman reittauksen. Lisää käyttäjän sivulle tieto käyttäjän mielityylistä.
 >
-> Älä tee kaikkea yhteen metodiin (ellet ratkaise tehtävää tietokantatasolla ActiveRecordilla mikä sekin on mahdolista!), vaan määrittele sopivia apumetodeja! Jos huomaat metodisi olevan yli 5 riviä pitkä, teet asioita todennäköisesti joko liikaa tai liian kankeasti, joten refaktoroi koodiasi. Rubyn kokoelmissa on paljon tehtävään hyödyllisiä apumetodeja, ks. http://ruby-doc.org/core-2.0/Enumerable.html
+> Älä tee kaikkea yhteen metodiin (ellet ratkaise tehtävää tietokantatasolla ActiveRecordilla mikä sekin on mahdolista!), vaan määrittele sopivia apumetodeja! Jos huomaat metodisi olevan yli 5 riviä pitkä, teet asioita todennäköisesti joko liikaa tai liian kankeasti, joten refaktoroi koodiasi. Rubyn kokoelmissa on paljon tehtävään hyödyllisiä apumetodeja, ks. http://ruby-doc.org/core-2.2.0/Enumerable.html
 
 > ## Tehtävä 4
 >
