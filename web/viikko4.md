@@ -1753,8 +1753,8 @@ Githubissa olevat Rails-projektit on helppo asettaa Travisin tarkkailtavaksi.
 
 > ## Tehtävä 11
 >
-> Tee repositorion juureen Travisia varten konfiguraatiotiedosto .travis.yml jolla on seuraava sisältö:
->
+> Tee repositorion juureen Travisia varten konfiguraatiotiedosto .travis.yml (HUOM! Kohtaan ```rvm:``` aseta käyttämäsi rubyn versio.) jolla on seuraava sisältö:
+> 
 >```ruby
 >language: ruby
 >
