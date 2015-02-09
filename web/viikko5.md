@@ -436,7 +436,7 @@ Syynä tälle on se, että testiympäristössä ei ole suoritettu kaikkia tietok
 >
 > Laajenna testiä kattamaan seuraavat tapaukset:
 > * jos API palauttaa useita olutpaikkoja, kaikki näistä näytetään sivulla
-> * jos API ei löydä paikkakunnalta yhtään olutpaikkaa (eli paluuarvo on tyhjä taulukko), sivulla näytetään ilmoitus "No locations in <<etsitty paikka>>"
+> * jos API ei löydä paikkakunnalta yhtään olutpaikkaa (eli paluuarvo on tyhjä taulukko), sivulla näytetään ilmoitus "No locations in _etsitty paikka_"
 >
 > Ilmoitus löytymättömistä olutpaikoista kannattaa toteuttaa _noticeilla_, ks. https://github.com/mluukkai/WebPalvelinohjelmointi2015/blob/master/web/viikko3.md#kirjautumisen-hienos%C3%A4%C3%A4t%C3%B6%C3%A4
 
@@ -1101,6 +1101,4 @@ Hyvä lista oluttyyleistä kuvauksineen löytyy osoitteesta http://beeradvocate.
 
 Commitoi kaikki tekemäsi muutokset ja pushaa koodi Githubiin. Deployaa myös uusin versio Herokuun.
 
-Tehtävät kirjataan palautetuksi osoitteeseen http://wadrorstats2015.herokuapp.com/ tehtävien palautus onnistuu maanantaina 9.2.
-
-
+Tehtävät kirjataan palautetuksi osoitteeseen http://wadrorstats2015.herokuapp.com/ 
