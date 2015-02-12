@@ -1101,4 +1101,4 @@ Hyvä lista oluttyyleistä kuvauksineen löytyy osoitteesta http://beeradvocate.
 
 Commitoi kaikki tekemäsi muutokset ja pushaa koodi Githubiin. Deployaa myös uusin versio Herokuun.
 
-Tehtävät kirjataan palautetuksi osoitteeseen http://wadrorstats2015.herokuapp.com/ 
+Tehtävät kirjataan palautetuksi osoitteeseen http://wadrorstats2015.herokuapp.com/
