@@ -73,9 +73,57 @@ RSpec.describe User, :type => :model do
     end
   end
 
-  describe "favorite brewery" do
+describe "favorite style" do
+    let(:user){FactoryGirl.create(:user) }
+
+    it "has method for determining one" do
+      expect(user).to respond_to(:favorite_style)
+    end
+
+    it "without ratings does not have one" do
+      expect(user.favorite_style).to eq(nil)
+    end
+
+    it "is the style of the only rated if one rating" do
+      create_beers_with_ratings_and_style(10, "Lager", user)
+
+      expect(user.favorite_style).to eq("Lager")
+    end
+
+    it "is the style with highest average rating if several rated" do
+      create_beers_with_ratings_and_style(10, 20, 15, "Lager", user)
+      create_beers_with_ratings_and_style(35, "IPA", user)
+      create_beers_with_ratings_and_style(25, 20, 15, "Porter", user)
+
+      expect(user.favorite_style).to eq("IPA")
+    end
   end
 
-  describe "favorite style" do
+  describe "favorite brewery" do
+    let(:user){FactoryGirl.create(:user) }
+
+    it "has method for determining one" do
+      expect(user).to respond_to(:favorite_brewery)
+    end
+
+    it "without ratings does not have one" do
+      expect(user.favorite_brewery).to eq(nil)
+    end
+
+    it "is the brewery of only rated if one rating" do
+      brewery = FactoryGirl.create(:brewery, name:"Koff")
+      create_beers_with_ratings_and_brewery(10, brewery, user)
+
+      expect(user.favorite_brewery).to eq(brewery)
+    end
+
+    it "is the brewery with highest average rating if several rated" do
+      plevna = FactoryGirl.create(:brewery, name:"Plevna")
+      create_beers_with_ratings_and_brewery(10, 20, 15, FactoryGirl.create(:brewery), user)
+      create_beers_with_ratings_and_brewery(35, plevna , user)
+      create_beers_with_ratings_and_brewery(25, 20, 15, FactoryGirl.create(:brewery), user)
+
+      expect(user.favorite_brewery).to eq(plevna)
+      end
   end
 end
