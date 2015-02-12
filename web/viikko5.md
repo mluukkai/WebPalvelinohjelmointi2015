@@ -45,7 +45,7 @@ http://stark-oasis-9187.herokuapp.com/api/ toimivaa 'välimuistipalvelinta'. Esi
 [http://stark-oasis-9187.herokuapp.com/api/helsinki]
 (http://stark-oasis-9187.herokuapp.com/api/helsinki)
 
-Välimuistipalvelin toimii siten, että jos siltä haetaan kaupunkia, jota on haettu jo aiemmin, palauttaa se tallettamansa tuloksen. Jos taas haetaan on kaupunkia, jonka tietoja välimuistpalvelin ei tiedä, kysyy se kaupungin tiedot ensin Beermapping-palvelulta. Tällöin operaatio kestää huomattavasti kauemmin. Välimuistipalvelinta ei ole testattu kovin paljoa, joten sen toiminnassa voi ilmetä ongelmia. Jos näin tapahtuu, ilmoita asiasta.
+Välimuistipalvelin toimii siten, että jos siltä haetaan kaupunkia, jota on haettu jo aiemmin, palauttaa se tallettamansa tuloksen. Jos taas haetaan kaupunkia, jonka tietoja välimuistpalvelin ei tiedä, kysyy se kaupungin tiedot ensin Beermapping-palvelulta. Tällöin operaatio kestää huomattavasti kauemmin. Välimuistipalvelinta ei ole testattu kovin paljoa, joten sen toiminnassa voi ilmetä ongelmia. Jos näin tapahtuu, ilmoita asiasta.
 
 Tehdään nyt sovellukseemme olutravintoloita etsivä toiminnallisuus.
 
@@ -1075,7 +1075,7 @@ Olemme käyttäneet Railsin migraatioita jo ensimmäisestä viikosta alkaen. On 
 >
 > Vielä hienompaa on tehdä kaikki edelliset askeleet yksittäisen migraation sisällä.
 >
-> Vihje: voit harjoitella datamigraation tekemistä siten, että kopioit ennen migraation aloittamista tietokannan eli tiedoston _db/development.sqlute3_ ja jos migraatiossa menee jokin pieleen, voit palauttaa tilanteen ennalleen kopion avulla. Myös byebug saattaa osoittautua hyödylliseksi migraation kehittelemisessä.
+> Vihje: voit harjoitella datamigraation tekemistä siten, että kopioit ennen migraation aloittamista tietokannan eli tiedoston _db/development.sqlite3_ ja jos migraatiossa menee jokin pieleen, voit palauttaa tilanteen ennalleen kopion avulla. Myös byebug saattaa osoittautua hyödylliseksi migraation kehittelemisessä.
 >
 > Voit myös suorittaa siirtymisen uusiin tietokannassa oleviin tyyleihin suoraviivaisemmin eli poistamalla oluilta _style_-sarakkeen ja asettamalla oluiden tyylit esim. konsolista.
 >
