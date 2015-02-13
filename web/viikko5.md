@@ -519,7 +519,7 @@ Testi siis ensin määrittelee, että URL:iin joka loppuu merkkijonoon "espoo" (
 
 Itse testi tapahtuu suoraviivaisesti tarkastelemalla BeermappingApi:n metodin <code>places_in</code> palauttamaa taulukkoa.
 
-*Huom:* stubasimme testissä ainoastaan merkkijonoon "espoo" loppuviin URL:eihin (<code>/.*tampere/</code>) kohdistuvat HTTP GET -kutsut. Jos testin suoritus aiheuttaa jonkin muunlaisen HTTP-kutsun, huomauttaa testi tästä:
+*Huom:* stubasimme testissä ainoastaan merkkijonoon "espoo" loppuviin URL:eihin (<code>/.*espoo/</code>) kohdistuvat HTTP GET -kutsut. Jos testin suoritus aiheuttaa jonkin muunlaisen HTTP-kutsun, huomauttaa testi tästä:
 
 ```ruby
 ) BeermappingApi When HTTP GET returns no entries, an empty array is returned
