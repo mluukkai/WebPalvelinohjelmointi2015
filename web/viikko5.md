@@ -1035,7 +1035,13 @@ Hienosäädetään olutseuraan liittymistä
 >    <% end %>
 >```
 >
-> Lomaketta käytettäessä on kontrollerissa asetettava muuttujan <code>@membership</code> arvoksi käyttäjän seuraan liittävä olio.
+> **HUOM:** saatat saada virheilmoituksen <code>No route matches [DELETE] "/memberships"</div>
+>
+> Syynä tälle on se, että routes-tiedoston määrittely määrittelee HTTP Delete -operaation vaan polulle, joka on muotoa _/memberships/:id_, eli esim. _memberships/42_
+>
+> Metodi <code>form_for</code> tuottaa polun muotoa _memberships_ jos sen parametrina oleva olio _ei ole_ talletettu tietokantaan. Jos parametrina oleva olio on talletettu tietokantaan, generoituva polku on muotoa _memberships/42_, missä 42 siis parametrina olevan olion id.
+>
+> Lomaketta käytettäessä on siis kontrollerissa asetettava muuttujan <code>@membership</code> arvoksi käyttäjän seuraan liittävä olio.
 
 Jos käyttäjä on seuran jäsen, näytetän seuran sivulla eroamisen mahdollistava painike:
 
