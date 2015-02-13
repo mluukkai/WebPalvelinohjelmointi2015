@@ -1,4 +1,4 @@
-Jatkamme sovelluksen rakentamista siitä, mihin jäimme viikon 4 lopussa. Allaoleva materiaali olettaa, että olet tehnyt kaikki edellisen viikon tehtävät. Jos et tehnyt kaikkia tehtäviä, voit ottaa kurssin repositorioista [edellisen viikon mallivastauksen](https://github.com/mluukkai/WebPalvelinohjelmointi2015/tree/master/malliv/viikko4). Jos sait suurimman osan edellisen viikon tehtävistä tehtyä, saattaa olla helpointa, että täydennät vastaustasi mallivastauksen avulla.
+Jatkamme sovelluksen rakentamista siitä, mihin jäimme viikon 4 lopussa. Allaoleva materiaali olettaa, että olet tehnyt kaikki edellisen viikon tehtävät. Jos et tehnyt kaikkia tehtäviä, voit ottaa kurssin repositorioista [edellisen viikon mallivastauksen](https://github.com/mluukkai/WebPalvelinohjelmointi2015/tree/master/mallivastaukset/viikko4). Jos sait suurimman osan edellisen viikon tehtävistä tehtyä, saattaa olla helpointa, että täydennät vastaustasi mallivastauksen avulla.
 
 Jos otat edellisen viikon mallivastauksen tämän viikon pohjaksi, kopioi hakemisto muualle kurssirepositorion alta (olettaen että olet kloonannut sen) ja tee sovelluksen sisältämästä hakemistosta uusi repositorio.
 
@@ -519,7 +519,7 @@ Testi siis ensin määrittelee, että URL:iin joka loppuu merkkijonoon "espoo" (
 
 Itse testi tapahtuu suoraviivaisesti tarkastelemalla BeermappingApi:n metodin <code>places_in</code> palauttamaa taulukkoa.
 
-*Huom:* stubasimme testissä ainoastaan merkkijonoon "espoo" loppuviin URL:eihin (<code>/.*tampere/</code>) kohdistuvat HTTP GET -kutsut. Jos testin suoritus aiheuttaa jonkin muunlaisen HTTP-kutsun, huomauttaa testi tästä:
+*Huom:* stubasimme testissä ainoastaan merkkijonoon "espoo" loppuviin URL:eihin (<code>/.*espoo/</code>) kohdistuvat HTTP GET -kutsut. Jos testin suoritus aiheuttaa jonkin muunlaisen HTTP-kutsun, huomauttaa testi tästä:
 
 ```ruby
 ) BeermappingApi When HTTP GET returns no entries, an empty array is returned
