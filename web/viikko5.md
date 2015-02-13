@@ -791,6 +791,9 @@ Voit myös määritellä ympäristömuuttujan arvon (export-komennolla) komentot
 Ympäristömuuttujille on helppo asettaa arvo myös Herokussa, ks.
 https://devcenter.heroku.com/articles/config-vars
 
+**HUOM** Jos haluat pitää Traviksen toimintakunnossa, joudut määrittelemään ympäristömuuttujan Travis-konfiguraatioon ks.
+[http://docs.travis-ci.com/user/environment-variables/](http://docs.travis-ci.com/user/environment-variables/)
+
 ## Lisäselvennys kontrollerin toiminnasta
 
 Muutamien osalla on ollut havaittavissa hienoista epäselvyyttä kontrollereiden <code>show</code>-metodien toimintaperiaatteessa. Seuraavaakin tehtävää silmälläpitäen kerrataan asiaa hieman.
@@ -874,7 +877,7 @@ eli tällä kertaa routeissa määriteltiin, että panimon id:hen viitataan <cod
 
 > ## Tehtävät 5-6 (vastaa kahta tehtävää)
 >
-> Tee sovellukselle ominaisuus, jossa ravintolan nimeä klikkaamalla avautuu oma sivu, jossa on näkyvillä ravintolan tiedot. Sisällytä sivulle (esim. iframena) myös kartta, johon on merkattu ravintolan sijainti. Huomaa, että kartan url löytyy suoraan ravintolan tiedoista. Huom: iframejen käyttö ei ole tietoturvasyistä järkevää. Parempi vaihtoehto olisi käyttää suoraan [Googlen Map APIa](https://developers.google.com/maps/).
+> Tee sovellukselle ominaisuus, jossa ravintolan nimeä klikkaamalla avautuu oma sivu, jossa on näkyvillä ravintolan tiedot. Sisällytä sivulle (esim. iframena) myös kartta, johon on merkattu ravintolan sijainti. Huomaa, että kartan url löytyy suoraan ravintolan tiedoista. Huom: iframejen käyttö ei ole tietoturvasyistä järkevää. Parempi vaihtoehto olisi käyttää suoraan [Googlen Map APIa](https://developers.google.com/maps/). **HUOM** Jos käytät ravintolan tiedoissa olevaa karttaa iframessa, kartta ei toimi herokussa jos määrittelet selaimessa protokollaksi https, eli kirjoitat osoiteriville _https://..._, jos kirjoitat _http://..._, kartan pitäisi toimia myös herokussa.
 >* ravintolan urliksi kannattaa vailta Rails-konvention mukainen places/:id, routes.rb voi näyttää esim. seuraavalta:
 >
 >```ruby
@@ -1082,6 +1085,8 @@ Olemme käyttäneet Railsin migraatioita jo ensimmäisestä viikosta alkaen. On 
 > Muutoksen jälkeen uutta olutta luotaessa oluen tyyli valitaan panimoiden tapaan valmiilta listalta. Lisää myös tyylien sivulle vievä linkki navigaatiopalkkiin.
 >
 > Tyylien sivulle kannattaa lisätä lista kaikista tyylin oluista.
+>
+> **HUOM** Jos et tee myös datan migraatiota migraatiotiedostojen avulla, tämä tehtävä todennäköisesti hajottaa Travisin. Voit merkitä tehtävän siitä huolimatta. Travisia ei ole pakko pitää toimintakunnossa kurssin seuraavilla viikoilla. Toki on syytä potea hieman huonoa omaatuntoa, jos Travis-build rikkoutuu.
 
 Tehtävän jälkeen oluttyylin sivu voi näyttää esim. seuraavalta
 
