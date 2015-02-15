@@ -644,7 +644,7 @@ http://guides.rubyonrails.org/routing.html#adding-more-restful-actions
 >
 > Toteuta toiminnallisuus, jonka avulla administraattorit voivat jäädyttää jonkin käyttäjätunnuksen. Jäädyttäminen voi tapahtua esim. napilla, jonka vain administraattorit näkevät käyttäjän sivulla. Jäädytetyn tunnuksen omaava käyttäjä ei saa päästä kirjautumaan järjestelmään. Yrittäessään kirjautumista, sovellus huomauttaa käyttäjälle että hänen tunnus on jäädytetty ja kehoittaa ottamaan yhteyttä ylläpitäjiin. Administraattorien tulee pystyä palauttamaan jäädytetty käyttäjätunnus ennalleen.
 >
-> **HUOM:** älä määrittele Userille attribuuttia nimeltä <code>frozen</body>, kyseessä on kielletty attribuutin nimi!
+> **HUOM:** älä määrittele Userille attribuuttia nimeltä <code>frozen</code>, kyseessä on kielletty attribuutin nimi!
 >
 > Voit toiteuttaa toiminnallisuuden esim. allaolevien vihjaamaan kuvien tapaan
 
