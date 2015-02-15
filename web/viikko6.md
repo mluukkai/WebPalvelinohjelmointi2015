@@ -666,12 +666,10 @@ Administraattori voi uudelleenaktivoida jäädytetyn käyttäjätunnuksen käytt
 
 ## Monimutkaisempi pääsynhallinta
 
-Jos sovelluksessa on tarvetta monipuolisempaan pääsynhallintaan (engl. authorization), kannattanee asia hoitaa esim. _cancan_-gemin avulla ks. https://github.com/ryanb/cancan ja
+Jos sovelluksessa on tarvetta monipuolisempaan pääsynhallintaan (engl. authorization), kannattanee asia hoitaa esim. _cancan_-gemin avulla ks. https://github.com/CanCanCommunity/cancancan ja
 http://railscasts.com/episodes/192-authorization-with-cancan
 
 Aihetta esittelevä Rails cast on jo aika ikääntynyt, eli tarkemmat ohjeet kannattaa katsoa projektin Github-sivulta. Rails castit tarjoavat todella hyviä esittelyjä monista aihepiireistä, eli vaikka castit eivät enää olisi täysin ajantasalla kaikkien detaljien suhteen, kannattaa ne usein silti katsoa läpi.
-
-**HUOM:** cancan-gemiä ei ikävä kyllä ole vielä [päivitetty Rails 4:n](http://www.ready4rails4.net/gems/cancan) kanssa toimivaksi. Gemistä on kuitenkin olemassa myös Rails 4:n kanssa toimiva versio https://github.com/colinyoung/cancan_strong_parameters eli **toistaiseksi on käytettävä cancanin sijaan gemiä cancan_strong_parameters**
 
 ## Rails-sovellusten tietoturvasta
 
