@@ -124,7 +124,7 @@ Muutetaan sovelluksen layoutin eli tiedoston application.html.erb sivupohjan ren
   </body>
 ```
 
-Eli sijoitamme bootstrapin containeriin yhden rivin, jonka jaamme kahteen sarakkeeseen: 9:n levyiseen johon kunkin sivun tiedot upotetaan ja 3:n levyiseen osaan jossa näytämme hienon kuvan.
+Eli sijoitamme bootstrapin containeriin yhden rivin, jonka jaamme kahteen sarakkeeseen: 8:n levyiseen johon kunkin sivun tiedot upotetaan ja 4:n levyiseen osaan jossa näytämme hienon kuvan.
 
 Sivun pohja on nyt kunnossa ja voimme hyödyntää bootstrapin tyylejä ja komponentteja sivuillamme.
 
