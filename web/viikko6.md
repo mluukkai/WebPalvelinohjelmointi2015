@@ -1024,5 +1024,3 @@ Jos tässä luvussa esitellyn tyyliset temput kiinnostavat, voit jatkaa esim. se
 Commitoi kaikki tekemäsi muutokset ja pushaa koodi Githubiin. Deployaa myös uusin versio Herokuun.
 
 Tehtävät kirjataan palautetuksi osoitteeseen http://wadrorstats2015.herokuapp.com/
-
-Tehtävien palauttaminen on mahdollista maanantaina 16.2.
