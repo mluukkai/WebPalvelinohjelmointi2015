@@ -691,7 +691,7 @@ Emme ole vielä toistaiseksi puhuneet mitään Rails-sovellusten tietoturvasta. 
 > * http://guides.rubyonrails.org/action_controller_overview.html#force-https-protocol
 > * http://guides.rubyonrails.org/action_controller_overview.html#log-filtering
 
-Yo. dokumentista ei käy täysin selväksi se, että Rails _sanitoi_ (eli escapettaa kaikki script- ja html-tagit yms) oletusarvoisesti sivuilla renderöitävän syötteen, eli esim. jos yrittäisimme syöttää javascript-pätkän <code><script>alert('Evil XSS attack');</script></code> oluttyylin kuvaukseen, koodia ei suoriteta, vaan koodi renderöityy sivulle 'tekstinä':
+Yo. dokumentista ei käy täysin selväksi se, että Rails _sanitoi_ (eli escapettaa kaikki script- ja html-tagit yms) oletusarvoisesti sivuilla renderöitävän syötteen, eli esim. jos yrittäisimme syöttää javascript-pätkän <code> &lt;script&gt;alert(&#39;Evil XSS attack&#39;);&lt;/script&gt;</code> oluttyylin kuvaukseen, koodia ei suoriteta, vaan koodi renderöityy sivulle 'tekstinä':
 
 ![kuva](https://github.com/mluukkai/WebPalvelinohjelmointi2015/raw/master/images/ratebeer-w5-7.png)
 
@@ -1024,5 +1024,3 @@ Jos tässä luvussa esitellyn tyyliset temput kiinnostavat, voit jatkaa esim. se
 Commitoi kaikki tekemäsi muutokset ja pushaa koodi Githubiin. Deployaa myös uusin versio Herokuun.
 
 Tehtävät kirjataan palautetuksi osoitteeseen http://wadrorstats2015.herokuapp.com/
-
-Tehtävien palauttaminen on mahdollista maanantaina 16.2.
