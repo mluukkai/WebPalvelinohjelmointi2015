@@ -1846,6 +1846,7 @@ OAuth-pohjainen autentikaatio onnistuu Railsilla helposti Omniauth-gemien avulla
 > (byebug) env["omniauth.auth"].info
 #<OmniAuth::AuthHash::InfoHash email="mluukkai@iki.fi" image="https://avatars.githubusercontent.com/u/523235?v=3" name="Matti Luukkainen" nickname="mluukkai" urls=#<OmniAuth::AuthHash Blog=nil GitHub="https://github.com/mluukkai">>
 (byebug)
+> ```
 >
 > * tee sovellukset tarvittavat muutokset
 >
