@@ -1808,46 +1808,36 @@ OAuth-pohjainen autentikaatio onnistuu Railsilla helposti Omniauth-gemien avulla
 
 > ## Tehtävä 13
 >
-> Lisää sovellukseen mahdollisuus käyttää sitä GitHub-tunnuksilla. Etene seuraavasti
->
-> * Kirjaudu GitHubiin ja mene [setting-sivulle](https://github.com/settings/profile). Valitse vasemmalta _applications_, ja klikkaa _Register new Application_, määrittele _homepage urliksi_ http://localhost:3000 ja _authorization callback urliksi_ http://localhost:3000/auth/github/callback
->
-> * asenna omniauth-github gem
->
-> * Luo hakemistoon _config/initializers_ tiedosto _omniauth.rb_ jolla on seuraava sisältö
+> Lisää sovellukseen mahdollisuus käyttää sitä GitHub-tunnuksilla. Etene seuraavasti:
+> * Kirjaudu GitHubiin ja mene [setting-sivulle](https://github.com/settings/profile). Valitse vasemmalta _Applications_, ja klikkaa _Register new Application_, määrittele _homepage urliksi_ http://localhost:3000 ja _authorization callback urliksi_ http://localhost:3000/auth/github/callback
+> * asenna [omniauth-github](https://github.com/intridea/omniauth-github) gem
+> * Luo hakemistoon _config/initializers_ tiedosto _omniauth.rb_, jolla on seuraava sisältö:
 > ```ruby
 > Rails.application.config.middleware.use OmniAuth::Builder do
 >  provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
 > end
 > ```
->
 > * aseta GitHubiin luomasi sovelluksen sivulla olevat _client id_ ja _client secret_ edellä määriteltyjen [ympäristömuuttujien](https://github.com/mluukkai/WebPalvelinohjelmointi2015/blob/master/web/viikko5.md#sovelluskohtaisen-datan-tallentaminen) arvoksi
->
 > * lisää tiedostoon _routes.rb_ reitti
 > ```ruby
 >   get 'auth/:provider/callback', to: 'sessions#create_oauth'
 > ```
->
 > * luo reitin määrittelemä kontrollerimetodi _sessiokontrolleriin_
->
 > * tee sovellukseen nappi, jota klikkaamalla käyttäjä voi kirjautua sovellukseen GitHub-tunnuksilla. Napin pathi on _auth/github_
->
 > * kun kirjaudut sovellukseesi GitHub-tunnuksilla, uudelleenohjautuu selain osoitteeseen _auth/github/callback_ eli routes.rb:n määrittelyn ansioista suoritus siirtyy sessiokontrollerin metodille _create_oauth_, pääset siellä käsiksi tarvittaviin tietoihin muuttujan <code>env["omniauth.auth"]</code> avulla:
 > ```ruby
 > (byebug) env["omniauth.auth"].info
 #<OmniAuth::AuthHash::InfoHash email="mluukkai@iki.fi" image="https://avatars.githubusercontent.com/u/523235?v=3" name="Matti Luukkainen" nickname="mluukkai" urls=#<OmniAuth::AuthHash Blog=nil GitHub="https://github.com/mluukkai">>
 (byebug)
 > ```
->
 > * tee sovellukset tarvittavat muutokset
->
 > * kun sovellus toimii paikallisesti, vaihda GitHub-sovelluksen _homepage url_ ja _authorization callback url_ vastaamaan Herokussa olevan sovelluksesi urleja
 >
 > Muutokset eivät ole täysin suoraviivaisia:
 > * sessiokontrollerin uuteen metodiin tulee kirjoittaa koodi, joka tarkastaa käyttäjän identiteetin ja luo tarvittaessa GitHub-käyttäjää vastaavan <code>User</code>-olion
 > * joudut muokkaamaan <code>User</code>-modelia siten, että sen avulla hoidetaan sekä järjestelmän omaa salasanaa hyödyntävät käyttäjät, että GitHubin kautta kirjautuvat
-> * tällä hetkellä <code>User</code>-olioiden validoinnissa vaaditaan, että olioilla on vähintään 4 merkin mittainen salasana. Joudut tekemään validoinnin ehdolliseksi, siten ettei sitä vaadita GitHubin tunnuksilla kirjautuvalta käyttäjältä katso apua googlella, tai toinen vaihtoehto on generoida myös GitHubin kautta kirjautuville esim. satunnainen salasana
-> * <code>User</code>-olioiden validoinnissa vaaditaan, myös että usernamen pituus on korkeintaan 15 merkkiä. Tämä saattaa muodostaa ongelman jos haluat luoda usernamen GitHubin-kirjautujan nimestä. Kasvata käyttäjätunnuksen maksimipituutta tarvittaessa.
+> * tällä hetkellä <code>User</code>-olioiden validoinnissa vaaditaan, että olioilla on vähintään 4 merkin mittainen salasana. Joudut tekemään validoinnin ehdolliseksi, siten ettei sitä vaadita GitHubin tunnuksilla kirjautuvalta käyttäjältä (katso apua googlella) tai toinen vaihtoehto on generoida myös GitHubin kautta kirjautuville esim. satunnainen salasana
+> * <code>User</code>-olioiden validoinnissa vaaditaan myös että usernamen pituus on korkeintaan 15 merkkiä. Tämä saattaa muodostaa ongelman jos haluat luoda usernamen GitHubin-kirjautujan nimestä. Kasvata käyttäjätunnuksen maksimipituutta tarvittaessa.
 
 
 
