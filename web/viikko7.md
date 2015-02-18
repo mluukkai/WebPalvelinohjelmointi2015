@@ -1809,37 +1809,55 @@ Jos haluaisimme vastaavasti, että sovelluksemme näyttäisi käyttäjälle olut
 
 ## Single sign on
 
-Monilla sivustoilla on viime aikoina yleistynyt käytäntö, jossa mahdollistetaan sivulle kirjautuminen esim. Google- tai Facebook-tunnuksilla. Sivustot siis ovat ulkoistaneet käyttäjänhallinnan ja autentikoinnin erillisille palveluille.
+Monilla sivustoilla on viime aikoina yleistynyt käytäntö, jossa mahdollistetaan sivulle kirjautuminen esim. Google-,  Facebook- tai GitHub-tunnuksilla. Sivustot siis ovat ulkoistaneet käyttäjänhallinnan ja autentikoinnin erillisille palveluille.
 
 Autentikointi tapahtuu OAuth2-standardia (ks. https://tools.ietf.org/html/draft-ietf-oauth-v2-31) hyödyntäen, OAuth-autentikoinnin perusteista enemmän esim. osoitteessa http://aaronparecki.com/articles/2012/07/29/1/oauth2-simplified
 
-OAuth-pohjainen autentikaatio onnistuu Railsilla helposti Omniauth-gemien avulla, ks. http://www.omniauth.org/ Jokaista palveluntarjoajaa kohti on nykyään olemassa oma geminsä, esim. omniauth-facebook https://github.com/mkdynamic/omniauth-facebook
+OAuth-pohjainen autentikaatio onnistuu Railsilla helposti Omniauth-gemien avulla, ks. http://www.omniauth.org/ Jokaista palveluntarjoajaa kohti on nykyään olemassa oma geminsä, esim. [omniauth-github](https://github.com/intridea/omniauth-github)
 
 > ## Tehtävä 13
 >
-> **Tehtävä on vapaaehtoinen ja sitä ei lasketa viikon tehtävien maksimiin**
+> Lisää sovellukseen mahdollisuus käyttää sitä GitHub-tunnuksilla. Etene seuraavasti
 >
-> Lisää sovellukseen mahdollisuus käyttää sitä Facebook-tunnuksilla. Katso ensin railscast osoitteesta
-http://railscasts.com/episodes/360-facebook-authentication ja kokeile sitten muutosten tekemistä. Facebookin developer-sivu näyttää nykyään melko erilaiselta kuin castin tekohetkellä. Toiminnassakin on pientä eroavaisuutta, mm. sovellus on luotaessa oletusarvoisesti eristystilassa (sandbox-mode). Alla on kuvasarja, joka näyttää miten sovelluksen luominen tapahtuu ja mistä tarvisemasi avaimet löytyvät.
+> * Kirjaudu GitHubiin ja mene [setting-sivulle](https://github.com/settings/profile). Valitse vasemmalta _applications_, ja klikkaa _Register new Application_, määrittele _homepage urliksi_ http://localhost:3000 ja _authorization callback urliksi_ http://localhost:3000/auth/github/callback
 >
-> Integraation hoitavaa Facebook-sovellusta ei ole pakko julkaista, riittää että se toimii eristystilassa ja pelkästään omalla koneellasi
+> * asenna omniauth-github gem
 >
-> Tarvisemasi muutokset eivät ole täysin suoraviivaisia:
-> * Rails 4:ssä routes.rb-tiedostossa on match-metodin sijaan käytettävä eksplisiittisesti HTTP-pyynnön nimiä, tällä kertaa oikea vaihtoehto on <code>get</code>
-> * joudut laajentamaan <code>User</code>-modelia siten, että sen avulla hoidetaan sekä järjestelmän omaa salasanaa hyödyntävät käyttäjät, että Facebookin kautta kirjautuvat
-> * tällä hetkellä <code>User</code>-olioiden validoinnissa vaaditaan, että olioilla on vähintään 4 merkin mittainen salasana. Joudut tekemään validoinnin ehdolliseksi, siten ettei sitä vaadita Facebookin tunnuksilla kirjautuvalta käyttäjältä katso apua googlella, tai toinen vaihtoehto on generoida myös Facebookin kautta kirjautuville esim. satunnainen salasana
-> * <code>User</code>-olioiden validoinnissa vaaditaan, myös että usernamen pituus on korkeintaan 15 merkkiä. Tämä saattaa muodostaa ongelman jos haluat luoda usernamen Facebook-kirjautujan nimestä. Kasvata käyttäjätunnuksen maksimipituutta tarvittaessa.
+> * Luo hakemistoon _config/initializers_ tiedosto _omniauth.rb_ jolla on seuraava sisältö
+> ```ruby
+> Rails.application.config.middleware.use OmniAuth::Builder do
+>  provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
+> end
+> ```
+>
+> * aseta GitHubiin luomasi sovelluksen sivulla olevat _client id_ ja _client secret_ edellä määriteltyjen [ympäristömuuttujien](https://github.com/mluukkai/WebPalvelinohjelmointi2015/blob/master/web/viikko5.md#sovelluskohtaisen-datan-tallentaminen) arvoksi
+>
+> * lisää tiedostoon _routes.rb_ reitti
+> ```ruby
+>   get 'auth/:provider/callback', to: 'sessions#create_oauth'
+> ```
+>
+> * luo reitin määrittelemä kontrollerimetodi _sessiokontrolleriin_
+>
+> * tee sovellukseen nappi, jota klikkaamalla käyttäjä voi kirjautua sovellukseen GitHub-tunnuksilla. Napin pathi on _auth/github_
+>
+> * kun kirjaudut sovellukseesi GitHub-tunnuksilla, uudelleenohjautuu selain osoitteeseen _auth/github/callback_ eli routes.rb:n määrittelyn ansioista suoritus siirtyy sessiokontrollerin metodille _create_oauth_, pääset siellä käsiksi tarvittaviin tietoihin muuttujan <code>env["omniauth.auth"]</code> avulla:
+> ```ruby
+> (byebug) env["omniauth.auth"].info
+#<OmniAuth::AuthHash::InfoHash email="mluukkai@iki.fi" image="https://avatars.githubusercontent.com/u/523235?v=3" name="Matti Luukkainen" nickname="mluukkai" urls=#<OmniAuth::AuthHash Blog=nil GitHub="https://github.com/mluukkai">>
+(byebug)
+>
+> * tee sovellukset tarvittavat muutokset
+>
+> * kun sovellus toimii paikallisesti, vaihda GitHub-sovelluksen _homepage url_ ja _authorization callback url_ vastaamaan Herokussa olevan sovelluksesi urleja
+>
+> Muutokset eivät ole täysin suoraviivaisia:
+> * sessiokontrollerin uuteen metodiin tulee kirjoittaa koodi, joka tarkastaa käyttäjän identiteetin ja luo tarvittaessa GitHub-käyttäjää vastaavan <code>User</code>-olion
+> * joudut muokkaamaan <code>User</code>-modelia siten, että sen avulla hoidetaan sekä järjestelmän omaa salasanaa hyödyntävät käyttäjät, että GitHubin kautta kirjautuvat
+> * tällä hetkellä <code>User</code>-olioiden validoinnissa vaaditaan, että olioilla on vähintään 4 merkin mittainen salasana. Joudut tekemään validoinnin ehdolliseksi, siten ettei sitä vaadita GitHubin tunnuksilla kirjautuvalta käyttäjältä katso apua googlella, tai toinen vaihtoehto on generoida myös GitHubin kautta kirjautuville esim. satunnainen salasana
+> * <code>User</code>-olioiden validoinnissa vaaditaan, myös että usernamen pituus on korkeintaan 15 merkkiä. Tämä saattaa muodostaa ongelman jos haluat luoda usernamen GitHubin-kirjautujan nimestä. Kasvata käyttäjätunnuksen maksimipituutta tarvittaessa.
 
-Facebook-sovelluksen luominen tapahtuu seuraavasti. Mene osoitteeseen
-https://developers.facebook.com ja klikkaa _Add new app_:
 
-![kuva](https://github.com/mluukkai/WebPalvelinohjelmointi2015/raw/master/images/ratebeer-w7-7.png)
-
-Valitse luotavan sovelluksen tyypiksi _www-sivu_. Valitse sovellukselle joku tyyppi. Klikkaa avautuvan näkymän oikeasta yläreunasta _Skip quick start_.
-
-Avaa settings. Sivulta saat _App idn_ ja _App secretin_. Klikkaa _Add platform_, ja määrittele urleiksi _http://localhost:3000_:
-
-![kuva](https://github.com/mluukkai/WebPalvelinohjelmointi2015/raw/master/images/ratebeer-w7-8.png)
 
 ## NoSQL-tietokannat
 
@@ -1864,7 +1882,7 @@ http://www.martinfowler.com/bliki/PolyglotPersistence.html
 
 ## Tehtävien palautus
 
-Commitoi kaikki tekemäsi muutokset ja pushaa koodi Githubiin. Deployaa myös uusin versio Herokuun.
+Commitoi kaikki tekemäsi muutokset ja pushaa koodi GitHubiin. Deployaa myös uusin versio Herokuun.
 
 Tehtävät kirjataan palautetuksi osoitteeseen http://wadrorstats2015.herokuapp.com/ tehtäviä voi palauttaa ma 23.2.
 
