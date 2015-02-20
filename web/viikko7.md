@@ -328,7 +328,7 @@ Eli ihan automaattisesti jsonit eivät synny, loimme kaiken reittaukseen liittyv
 
 Huomaamme, että scaffoldilla luotujen resurssien, esim oluen views-hakemistosta löytyy joukko _json.jbuilder-päätteisiä templateja, ja kuten arvata saattaa, käyttää Rails näitä jos resurssi halutaan json-muotoisena.
 
-Ottamalla mallia templatesta app/views/beers/index.json.jbuilder teemme reittauksille seuraavan json.jbuilder-templaten (tiedosto on siis app/views/ratins/index.json.jbuilder):
+Ottamalla mallia templatesta app/views/beers/index.json.jbuilder teemme reittauksille seuraavan json.jbuilder-templaten (tiedosto on siis app/views/ratings/index.json.jbuilder):
 
 ```ruby
 json.array!(@ratings) do |rating|
