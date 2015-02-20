@@ -695,7 +695,7 @@ Näkymän app/views/beers/nglist.html.erb ensimmäinen versio on seuraavassa:
 
 Script-tagissa oleva Javascript-koodi luo ensin Angular-moduulin _myApp_ ja määrittelee tämän jälkeen moduuliin kontrollerifunktion _BeersController_.
 
-Sivulla olevan div-tagin sisällä määritellään että kyseessä on <code>ng-app</code> eli Angular-sovellus, jonka määrittelee Angular-mocuuli _"myApp"_. Div-tagin sisällä oleva htmlkoodi määritellään kontrollerimetodin <code>BeersController</code> hallinnoivaksi.
+Sivulla olevan div-tagin sisällä määritellään että kyseessä on <code>ng-app</code> eli Angular-sovellus, jonka määrittelee Angular-moduuli _"myApp"_. Div-tagin sisällä oleva HTML-koodi määritellään kontrollerimetodin <code>BeersController</code> hallinnoivaksi.
 
 Huomaamme, että kontrollerimetodi asettaa muuttujan <code>$scope</code> kentän <code>teksti</code> arvoksi merkkijonon "Hello Angular!". Kaikki <code>$scope</code>-muttujan kentät ovat käytettävissä kontrollerin hallinnoimassa näkymässä. Näkymä sisältää nyt erikoiselta näyttävän merkinnän <code>{{teksti}}</code>. Kun selain renderöi sivun käyttäjälle, tupla-aaltosulkujen sisällä oleva Angular-koodi suoritetaan ja sen tulos renderöityy ruudulle. Ruudulle siis renderöityy kontrollerin muuttujaan sijoittama merkkijono.
 
