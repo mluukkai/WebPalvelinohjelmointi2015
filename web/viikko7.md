@@ -848,7 +848,7 @@ Tehdään vielä bonuksena sovellukseen ominaisuus, jonka avulla näytettävien 
     <th> <a ng-click="sort_by('style.name')">style</a> </th>
     <th> <a ng-click="sort_by('brewery.name')">brewery</a> </th>
     </thead>
-    <tr ng-repeat="beer in beers| orderBy:order">
+    <tr ng-repeat="beer in beers| orderBy:order | filter:searchText">
       <td>{{beer.name}}</td>
       <td>{{beer.style.name}}</td>
       <td>{{beer.brewery.name}}</td>
