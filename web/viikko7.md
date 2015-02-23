@@ -328,7 +328,7 @@ Eli ihan automaattisesti jsonit eivät synny, loimme kaiken reittaukseen liittyv
 
 Huomaamme, että scaffoldilla luotujen resurssien, esim oluen views-hakemistosta löytyy joukko _json.jbuilder-päätteisiä templateja, ja kuten arvata saattaa, käyttää Rails näitä jos resurssi halutaan json-muotoisena.
 
-Ottamalla mallia templatesta app/views/beers/index.json.jbuilder teemme reittauksille seuraavan json.jbuilder-templaten (tiedosto on siis app/views/ratins/index.json.jbuilder):
+Ottamalla mallia templatesta app/views/beers/index.json.jbuilder teemme reittauksille seuraavan json.jbuilder-templaten (tiedosto on siis app/views/ratings/index.json.jbuilder):
 
 ```ruby
 json.array!(@ratings) do |rating|
@@ -1184,7 +1184,7 @@ Miniprofilerin käyttöönotto on helppoa, riittää että Gemfileen lisätään
 
     gem 'rack-mini-profiler'
 
-Suorita <code>bundle install</code> ja käynnistä rails server uudelleen. Kun menet tämän jälkeen osoitteeseen http:localhos:300/beers huomaat, että sivun yläkulmaan ilmestyy aikalukema joka kuvaa HTTP-pyynnön suoritukseen käytettyä aikaa. Numeroa klikkaamalla avautuu tarkempi erittely ajankäytöstä:
+Suorita <code>bundle install</code> ja käynnistä rails server uudelleen. Kun menet tämän jälkeen osoitteeseen http:localhost:300/beers huomaat, että sivun yläkulmaan ilmestyy aikalukema joka kuvaa HTTP-pyynnön suoritukseen käytettyä aikaa. Numeroa klikkaamalla avautuu tarkempi erittely ajankäytöstä:
 
 ![kuva](https://github.com/mluukkai/WebPalvelinohjelmointi2015/raw/master/images/ratebeer-w6-7.png)
 
