@@ -1866,7 +1866,7 @@ http://www.martinfowler.com/bliki/PolyglotPersistence.html
 
 Commitoi kaikki tekemäsi muutokset ja pushaa koodi GitHubiin. Deployaa myös uusin versio Herokuun.
 
-Tehtävät kirjataan palautetuksi osoitteeseen http://wadrorstats2015.herokuapp.com/ tehtäviä voi palauttaa ma 23.2.
+Tehtävät kirjataan palautetuksi osoitteeseen http://wadrorstats2015.herokuapp.com/ 
 
 ## Mitä seuraavaksi?
 
