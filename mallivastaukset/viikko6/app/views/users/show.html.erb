@@ -1,0 +1,55 @@
+<h2>
+  <%= @user.username %>
+  <% if is_admin? and @user.is_frozen? %>
+    <span class="label label-info">account frozen</span>
+  <% end %>
+</h2>
+
+<% if @user.beer_clubs.any? %>
+  Member of
+  <% @user.beer_clubs.each do |club| %>
+      <%= link_to club.name, club %>
+  <% end %>
+<% end %>
+
+<% if @user.ratings.empty? %>
+  <p>has not yet rated any beers</p>
+<% else %>
+  <p>
+    Has made <%= pluralize(@user.ratings.count, 'rating') %>, average <%= @user.average_rating %>
+  </p>
+
+  <h4>Favorites</h4>
+
+  <dl class="dl-horizontal">
+    <dt>brewery</dt>
+    <dd><%=@user.favorite_brewery.name %></dd>
+    <dt>Favorite beer</dt>
+    <dd><%=@user.favorite_beer %></dd>
+    <dt>Favorite style</dt>
+    <dd><%=@user.favorite_style %></dd>
+  </dl>
+<% end %>
+
+<h4>Ratings</h4>
+<ul>
+  <% @user.ratings.each do |rating| %>
+    <li>
+      <%= rating %>
+      <% if @user == current_user %>
+        <%= link_to rating, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" do %>
+          <i class="glyphicon glyphicon-trash"></i>
+        <% end %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<% if @user == current_user %>
+  <%= link_to 'Change password', edit_user_path(@user), class:"btn btn-primary" %>
+  <%= link_to 'Delete account', @user, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+<% end %>
+
+<% if is_admin? %>
+  <%= link_to froze_button_label(@user), toggle_frozen_user_path(@user.id), method: :post, class: "btn btn-danger" %>
+<% end%>

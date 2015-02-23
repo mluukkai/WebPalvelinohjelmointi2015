@@ -1,0 +1,19 @@
+<h4>Best <%= title %></h4>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>average</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% objects.each do |object| %>
+      <tr>
+        <td><%= link_to object.name, object %></td>
+        <td><%= round(object.average_rating) %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
