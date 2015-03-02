@@ -1,4 +1,4 @@
-Jatkamme sovelluksen rakentamista siitä, mihin jäimme viikon 6 lopussa. Allaoleva materiaali olettaa, että olet tehnyt kaikki edellisen viikon tehtävät. Jos et tehnyt kaikkia tehtäviä, voit ottaa kurssin repositorioista [edellisen viikon mallivastauksen](https://github.com/mluukkai/WebPalvelinohjelmointi2015/tree/master/malliv/viikko5). Jos sait suurimman osan edellisen viikon tehtävistä tehtyä, saattaa olla helpointa, että täydennät vastaustasi mallivastauksen avulla.
+Jatkamme sovelluksen rakentamista siitä, mihin jäimme viikon 6 lopussa. Allaoleva materiaali olettaa, että olet tehnyt kaikki edellisen viikon tehtävät. Jos et tehnyt kaikkia tehtäviä, voit ottaa kurssin repositorioista [edellisen viikon mallivastauksen](https://github.com/mluukkai/WebPalvelinohjelmointi2015/tree/master/mallivastaukset/viikko6). Jos sait suurimman osan edellisen viikon tehtävistä tehtyä, saattaa olla helpointa, että täydennät vastaustasi mallivastauksen avulla.
 
 Jos otat edellisen viikon mallivastauksen tämän viikon pohjaksi, kopioi hakemisto muualle kurssirepositorion alta (olettaen että olet kloonannut sen) ja tee sovelluksen sisältämästä hakemistosta uusi repositorio.
 
@@ -871,7 +871,7 @@ Kuten huomaat, Angularin magia päivittää scopessa olevan muuttujan <code>sear
 Jos kiinnostus heräsi, jatka tutustumista esim. seuraavasta:
 http://docs.angularjs.org/tutorial
 
-[Angular-hatjoitustyötä varten kirjotettu tutoriaali](https://github.com/tuhoojabotti/AngularJS-ohjelmointiprojekti-k2014/blob/master/material/aloitusluento.md) voi myös olla hyödyllinen. Tutoriaalissa rakennetaan Angularilla sivu, joka käyttää Railsia backendinä.
+[Angular-harjoitustyötä varten kirjotettu tutoriaali](https://github.com/tuhoojabotti/AngularJS-ohjelmointiprojekti-k2014/blob/master/material/aloitusluento.md) voi myös olla hyödyllinen. Tutoriaalissa rakennetaan Angularilla sivu, joka käyttää Railsia backendinä.
 
 Tällä hetkellä näyttää siltä että Angular valtaa alaa todella ripeää tahtia. Angularin oppimiskäyrä on "jääkiekkomailamainen", alkuun pääsee aika helposti, mutta kehys on laaja ja sen täysimittainen hallinta vaatii pitkäjänteistä perehtymistä. Onneksi Angularin käyttö ei ole kaikki tai ei mitään -ratkaisu. Mikään ei estä Angularin varovaista käyttöönottoa, esim. rikastamalla sivujen joitain osia Angularilla ja tuottamalla osa sisällöstä Railsin templatejen avulla palvelinpuolella. Näin on toimittu esim. kurssin laskaristatistiikkasivulla http://wadrorstats2015.herokuapp.com/, missä graafien piirtäminen hoidetaan Angularin ja GoogleChartsin avulla.
 
